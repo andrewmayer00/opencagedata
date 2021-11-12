@@ -1,31 +1,3 @@
-/*
-Go bindings for OpenCage Geocoder
-
-http://geocoder.opencagedata.com/
-
-Usage:
-
-	geocoder := opencagedata.NewGeocoder("my-api-key")
-
-Simple queries:
-
-	result, err := geocoder.Geocode("Fonteinstraat, Leuven", nil)
-	if err != nil {
-		// Handle error
-	}
-	// Do something with result
-
-Extra options can be passed as well:
-
-	result, err := geocoder.Geocode("Fonteinstraat, Leuven", &opencagedata.GeocodeParams{
-		CountryCode: "be",
-	})
-	if err != nil {
-		// Handle error
-	}
-	// Do something with result
-
-*/
 package opencagedata
 
 import (
@@ -78,6 +50,15 @@ type GeocodeResultItem struct {
 	Confidence int      `json:"confidence"`
 	Formatted  string   `json:"formatted"`
 	Geometry   Geometry `json:"geometry"`
+	Annotation struct {
+		Timezone struct {
+			Name         string `json:"name"`
+			NowInDst     int    `json:"now_in_dst"`
+			OffsetSec    int    `json:"offset_sec"`
+			OffsetString string `json:"offset_string"`
+			ShortName    string `json:"short_name"`
+		} `json:"timezone"`
+	} `json:"annotations"`
 
 	Bounds struct {
 		NorthEast Geometry `json:"northeast"`
