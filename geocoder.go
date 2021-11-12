@@ -58,6 +58,10 @@ type GeocodeResultItem struct {
 			OffsetString string `json:"offset_string"`
 			ShortName    string `json:"short_name"`
 		} `json:"timezone"`
+
+		Components struct {
+			County string `json:"county"`
+		} `json:"components"`
 	} `json:"annotations"`
 
 	Bounds struct {
